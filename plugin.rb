@@ -8,5 +8,10 @@ register_asset "javascripts/discourse/templates/connectors/user-profile-primary/
 register_asset "stylesheets/twitter-profile-link.scss"
 
 after_initialize do
-  load File.expand_path("../app/serializers/user_serializer.rb", __FILE__)
+  add_to_serializer(:user, :twitter_screen_name) do
+    object.twitter_user_info.screen_name
+  end
+  add_to_serializer(:user, :include_twitter_screen_name?) do
+    object.twitter_user_info.present?
+  end
 end
