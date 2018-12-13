@@ -9,9 +9,9 @@ register_asset "stylesheets/twitter-profile-link.scss"
 
 after_initialize do
   add_to_serializer(:user, :twitter_screen_name) do
-    object.twitter_user_info.screen_name
+    object.user_associated_accounts.find_by(provider_name: "twitter")&.info["nickname"]
   end
   add_to_serializer(:user, :include_twitter_screen_name?) do
-    object.twitter_user_info.present?
+    object.user_associated_accounts.exists?(provider_name: "twitter")
   end
 end
