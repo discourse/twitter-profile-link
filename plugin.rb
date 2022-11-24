@@ -6,7 +6,6 @@
 # url: https://github.com/discourse/twitter-profile-link
 # transpile_js: true
 
-register_asset "javascripts/discourse/templates/connectors/user-profile-primary/twitter-profile.js.handlebars"
 register_asset "stylesheets/twitter-profile-link.scss"
 
 after_initialize do
