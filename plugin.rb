@@ -4,13 +4,12 @@
 # version: 0.1
 # authors: Neil Lalonde
 # url: https://github.com/discourse/twitter-profile-link
-# transpile_js: true
 
 register_asset "stylesheets/twitter-profile-link.scss"
 
 after_initialize do
   add_to_serializer(:user, :twitter_screen_name) do
-    object.user_associated_accounts.find_by(provider_name: "twitter")&.info["nickname"]
+    object.user_associated_accounts.find_by(provider_name: "twitter")&.info&.[]("nickname")
   end
 
   add_to_serializer(:user, :include_twitter_screen_name?) do
